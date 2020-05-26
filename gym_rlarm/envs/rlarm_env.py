@@ -8,6 +8,7 @@ class RlarmEnv(gym.Env):
   def __init__(self):
     pass
   def step(self, action):
+    print('hi')
     pass
   def reset(self):
     pass
