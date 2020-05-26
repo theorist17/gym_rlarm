@@ -35,7 +35,8 @@ class RlarmEnv(gym.Env):
 
         # arm
         dirname = os.path.dirname(__file__)
-        armUrdfPath = os.path.join(dirname, '../../assets/kuka_kr210_support/urdf/kr210l150.urdf')
+        #armUrdfPath = os.path.join(dirname, '../../assets/kuka_kr210_support/urdf/kr210l150.urdf')
+        armUrdfPath = os.path.join(dirname, '../../assets/Assem1/urdf/Assem1.urdf')
         self.arm = pb.loadURDF(armUrdfPath, basePosition=[0, 0, 0], useFixedBase=1)
         self.armPos, self.armOri = pb.getBasePositionAndOrientation(self.arm)
         self.armNumJoint = pb.getNumJoints(self.arm)
