@@ -97,7 +97,7 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="1.5"
+      lower="-1.5"
       upper="1.5"
       effort="0"
       velocity="1" />
@@ -109,7 +109,7 @@
       friction="0" />
     <safety_controller
       soft_upper="1.5"
-      soft_lower="1.5"
+      soft_lower="-1.5"
       k_position="0"
       k_velocity="0" />
   </joint>
@@ -166,7 +166,7 @@
     <axis
       xyz="1 0 0" />
     <limit
-      lower="1.5"
+      lower="-1.5"
       upper="1.5"
       effort="0"
       velocity="1" />
@@ -178,7 +178,7 @@
       friction="0" />
     <safety_controller
       soft_upper="1.5"
-      soft_lower="1.5"
+      soft_lower="-1.5"
       k_position="0"
       k_velocity="0" />
   </joint>
@@ -235,7 +235,7 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="1.5"
+      lower="-1.5"
       upper="1.5"
       effort="0"
       velocity="1" />
@@ -247,7 +247,7 @@
       friction="0" />
     <safety_controller
       soft_upper="1.5"
-      soft_lower="1.5"
+      soft_lower="-1.5"
       k_position="0"
       k_velocity="0" />
   </joint>
@@ -304,7 +304,7 @@
     <axis
       xyz="0 0 -1" />
     <limit
-      lower="1.5"
+      lower="-1.5"
       upper="1.5"
       effort="0"
       velocity="1" />
@@ -316,7 +316,7 @@
       friction="0" />
     <safety_controller
       soft_upper="1.5"
-      soft_lower="1.5"
+      soft_lower="-1.5"
       k_position="0"
       k_velocity="0" />
   </joint>
@@ -373,7 +373,7 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="1.5"
+      lower="-1.5"
       upper="1.5"
       effort="0"
       velocity="1" />
@@ -385,7 +385,7 @@
       friction="0" />
     <safety_controller
       soft_upper="1.5"
-      soft_lower="1.5"
+      soft_lower="-1.5"
       k_position="0"
       k_velocity="0" />
   </joint>
