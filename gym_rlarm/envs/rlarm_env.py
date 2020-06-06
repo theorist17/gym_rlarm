@@ -55,12 +55,11 @@ class DummyNet():
         self.action = np.array([-0.8,-1.3,0.5,0,-1])
         return self.action
 
-
 class RlarmEnv(gym.Env):
-    metadata = {'render.modes': ['GUI', 'TUI']}
+    metadata = {'render.modes': ['human']}
 
     def __init__(self, mode='GUI'):
-
+        super(RlarmEnv, self).__init__()
         # pybullet
         pb.connect(pb.GUI)
         pb.resetDebugVisualizerCamera(cameraDistance=0.25, cameraYaw=90, cameraPitch=-40,
@@ -104,9 +103,12 @@ class RlarmEnv(gym.Env):
         self.threshold = 0.001
         self.penalty = 0.001
         self.time_step = 1./ 240
+        self.max_step = 300
+        self.step_id = 0
         self.start_time = None
 
     def step(self, action):
+        self.step_id += 1
         pb.setJointMotorControlArray(self.arm, jointIndices=range(self.arm_jnum),
                                      controlMode=pb.POSITION_CONTROL, targetPositions=action)
         pb.stepSimulation()
@@ -128,6 +130,7 @@ class RlarmEnv(gym.Env):
         self.arm = pb.loadURDF(self.arm_urdf_path, basePosition=self.arm_base_pos, baseOrientation=self.arm_base_ori, useFixedBase=1)
         self.button = pb.loadURDF(self.button_urdf_path, basePosition=[0.1, 0, 0], useFixedBase=1)
 
+        self.step_id = 0
         if self.start_time:
             print("Time took",  time.time() - self.start_time, "sec")
         self.start_time = time.time()
@@ -139,11 +142,11 @@ class RlarmEnv(gym.Env):
         self.goal[-1] = max(self.goal[-1], 0)
         end_effector = self.getEndEffector()
 
-        state = np.concatenate((position, velocity, self.goal, end_effector))
+        observation = np.concatenate((position, velocity, self.goal, end_effector))
 
         pb.resetBasePositionAndOrientation(self.button, self.goal, self.button_base_ori)
 
-        return state
+        return observation
 
     def render(self):
         pass
@@ -203,6 +206,10 @@ class RlarmEnv(gym.Env):
 
         difference = goal - end_effector
         distance = np.linalg.norm(difference)
+
+        if self.step_id >= self.max_step:
+            done = True
+            print('Failed')
 
         if distance < threshold:
             done = True
